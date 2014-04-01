@@ -38,7 +38,12 @@ void Pqueue::swap(int a, int b) // Zamieniamy miejscami dwie struktury
 }
 bool Pqueue::less(int a, int b)
 {
-	return pq[a].key < pq[b].key;
+	if (pq[a].key < pq[b].key)
+		return true;
+	else if (pq[a].key == pq[b].key && pq[a].eld > pq[b].eld)
+		return true;
+	else
+		return false;
 }
 void Pqueue::build_max_heap()
 {
@@ -53,17 +58,6 @@ Pqueue::Pqueue(int size) // Skoñczona. Ew. b³êdy obs³u¿yæ!
 	low_bound = 85;
 	upp_bound = 95;
 }
-/*Pqueue::Pqueue(const int tab[], int rozmiar) // Prawid³owa, ew b³êdy obs³u¿yæ
-{
-pq = new item[rozmiar]; // tworzy tablicê struktur.
-for(int i = 0; i < rozmiar; i++)
-pq[i+1] = tab[i];
-// Tutaj tworzymy kopiec z kopca który nie jest maksymalny.
-N = rozmiar;
-build_max_heap();
-int low_bound = 85;
-int upp_bound = 95;
-}*/
 
 Pqueue::~Pqueue() // Skoñczony. 
 {
@@ -82,6 +76,7 @@ void Pqueue::insert(int key, int value)
 	if (N != max_size)
 	{
 		pq[++N].key = key;
+		pq[N].eld = max_eld++;
 		pq[N].value = value;
 		fixUp(N); // przekazujemy aktualny rozmiar kolejki pqueue. Dodalismy na koniec. 
 	}
