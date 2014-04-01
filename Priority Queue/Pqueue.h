@@ -13,7 +13,9 @@ private:
 	struct item{
 		int key;
 		int value;
+		int eld; // starszoœæ elementu przechowywana dla ka¿dego elementu z kolejki. 
 	};
+	int max_eld; // 
 	int max_size; // Maksymalny rozmiar dla ktorego tworzona jest kolejka
 	int N; // Aktualny rozmiar kolejki
 	int low_bound = 85;
